@@ -5,7 +5,7 @@
 
 // 핵심 :  adapter 패턴과 Policy Base Design 의 결합
 
-template<typename T, typename C = std::deque<T> >
+template<typename T, typename C = std::deque<T> > 
 class stack 
 {
 	C c;
