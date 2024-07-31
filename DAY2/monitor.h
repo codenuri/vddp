@@ -10,4 +10,10 @@ public:
 
 	int get_brightness() const { return brightness;}
 	int get_resolution() const { return resolution;}
+
+	void info() const 
+	{
+		std::cout << "brightness : " << brightness << std::endl;
+		std::cout << "resolution : " << resolution << std::endl;
+	}
 };
