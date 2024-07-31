@@ -21,7 +21,7 @@ public:
 	// 아래 멤버 함수는 Popup 에서만 필요하지만
 	// 여기서 선언을 제공하면 사용자가 캐스팅 없이 사용가능합니다
 	virtual BaseMenu* get_submenu(int idx) { throw UnsupportedOperation();}
-	virtual void add(MenuItem*) { throw UnsupportedOperation(); }
+	virtual void add(BaseMenu*) { throw UnsupportedOperation(); }
 };
 
 
