@@ -24,4 +24,9 @@ int main()
 	// => 모니터의 밝기를 변경하는 명령객체를 만들어서 실행
 	BrightnessCommand cmd(m, 90);
 	cmd.execute();
+
+
+	// 왜 ?? 직접하면 되는데...
+	// 어떤 의도 로 "BrightnessCommand" 를 만들까 ??
+	// => 다음 소스
 }
