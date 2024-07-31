@@ -14,7 +14,12 @@ class Cursor
 private:
 	Cursor() {}
 
-	// 규칙 #2.
+	// 규칙 #2. 컴파일러에게 복사생성자를 만들지 말라고 지시
+	Cursor(const Cursor&) = delete; // C++11 함수 삭제 문법
+	Cursor& operator=(const Cursor&) = delete;
+									// 관례적으로 복사를 삭제하면
+									// 대입도 삭제 합니다.
+
 
 
 	// 규칙 #3. 오직 한개의 객체를 만들어서 반환하는 static 멤버 함수
@@ -33,6 +38,9 @@ int main()
 	std::cout << &c1 << std::endl;
 	std::cout << &c2 << std::endl;
 
+	Cursor c3 = c1; // 복사생성자를 사용해서 객체 생성
+					// 복사생성자는 사용자가 만들지 않으면 컴파일러가 제공
+					// => 이렇게도 만들수 없어야 합니다
 }
 
 
