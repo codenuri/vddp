@@ -50,5 +50,10 @@ int main()
 	em.draw();	
 
 	Border bo(&ps); 
-	bo.draw();		
+	bo.draw();	
+
+	// 연속적인 기능의 추가 ?
+	Border bo1(&em); // ??? 현재는 에러
+					// 해결은 다음소스
+	bo1.draw();			
 }
