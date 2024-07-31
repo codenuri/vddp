@@ -39,5 +39,9 @@ public:
 
 TextView tv("hello");
 tv.show();
+
 ObjectAdapter oa(&tv);
 oa.draw();
+
+// adapter   : 동일한 기능.    인터페이스가 변경
+// decorator : 기능의 추가.    인터페이스는 동일
