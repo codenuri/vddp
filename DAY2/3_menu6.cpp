@@ -96,9 +96,12 @@ int main()
 
 
 	// #2. 아래 코드에 대해서 생각해 봅시다.
-	root->get_submenu(0)->add( new MenuItem("RED", 11)); // ?
-					
+//	root->get_submenu(0)->add( new MenuItem("RED", 11)); // error
+					// 현재 root 의 0번째는 "Popup" 이 맞지만
+					// 반환 타입이 BaseMenu* 이므로 에러
 
+	// 해결책 #1. 캐스팅
+	static_cast<PopupMenu*>(root->get_submenu(0))->add( new MenuItem("RED", 11));
 
 	root->command();
 }
