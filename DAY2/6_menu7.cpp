@@ -3,6 +3,10 @@
 #include <vector>
 #include <conio.h> 
 
+// Menu 6 : 안전성(Safety) 를 강조한 디자인
+// Menu 7 : 편의성(comportable) 를 강조한 디자인
+
+
 class UnsupportedOperation{};
 
 class BaseMenu 
