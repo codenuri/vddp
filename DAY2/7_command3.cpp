@@ -117,6 +117,23 @@ int main()
 			command->execute();
 			undo_stack.push(command);		
 		}
+
+		else if ( cmd == 0 )
+		{
+			if ( ! undo_stack.empty() )
+			{
+				command = undo_stack.top();
+				undo_stack.pop();
+
+				if ( command->can_undo() )
+				{
+					command->undo();
+				}
+
+				delete command; // redo 를 지원하려면 여기서 delete 하지말고
+								// redo_stack.push(command)
+			}
+		}
 	}
 }
 
