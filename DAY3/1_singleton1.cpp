@@ -8,6 +8,9 @@
 // => 전역변수는 좋은 코딩 스타일이 아닙니다.
 // => 그래서 싱글톤 패턴에 대한 비판도 많이 있습니다.
 
+// 아래 코드가 "mayer's singleton" 입니다.
+// => "effective-C++" 책의 저자인 "scott-mayer" 가 처음 제안한 코드
+
 class Cursor
 {
 	// 규칙 #1. 생성자를 private 에
@@ -38,7 +41,7 @@ int main()
 	std::cout << &c1 << std::endl;
 	std::cout << &c2 << std::endl;
 
-	Cursor c3 = c1; // 복사생성자를 사용해서 객체 생성
+//	Cursor c3 = c1; // 복사생성자를 사용해서 객체 생성
 					// 복사생성자는 사용자가 만들지 않으면 컴파일러가 제공
 					// => 이렇게도 만들수 없어야 합니다
 }
