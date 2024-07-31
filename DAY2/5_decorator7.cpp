@@ -27,17 +27,31 @@ public:
 // 공통이 기반 클래스 필요 - Stream
 class ZipDecorator : public Stream 
 {
-	FileStream* stream;
+	Stream* stream;
 public:
-	ZipDecorator(FileStream* stream) : stream(stream){}
+	ZipDecorator(Stream* stream) : stream(stream){}
 
 	void write(const std::string& s) override 
 	{
-		auto data = "[ " + s + " 압축됨 ]";
-		
+		auto data = "[ " + s + " 압축됨 ]"; // 추가된 기능
+
+		stream->write(data); // 기존 객체의 기능		
 	}
 };
 
+class EncryptDecorator : public Stream 
+{
+	Stream* stream;
+public:
+	EncryptDecorator(Stream* stream) : stream(stream){}
+
+	void write(const std::string& s) override 
+	{
+		auto data = "[ " + s + " 암호화됨 ]"; // 추가된 기능
+
+		stream->write(data); // 기존 객체의 기능		
+	}
+};
 
 int main()
 {
