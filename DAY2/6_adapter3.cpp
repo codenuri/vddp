@@ -12,13 +12,17 @@ template<typename T>
 class stack : public std::list<T>
 {
 public:
+	// push_back 이름을 push 로 변경한 코드
 	void push(const T& e)  { std::list<T>::push_back(e);}
 	void pop()             { std::list<T>::pop_back();}
 	T&   top()             { return std::list<T>::back();}
 };
-
 int main()
 {
 	stack<int> s;
 	s.push(10);
+
+	// 위 코드의 문제점
+	// => 아래 처럼 사용하면 스택이 잘못됩니다.
+	s.push_front(20); // !!! 양방향으로 접근!!!
 }
