@@ -77,7 +77,8 @@ int main()
 							// tv       : 객체
 
 	// 이미 생성된 객체 tv 를 vector 에 넣을수 있을까 ?
-	v.push_back( new ObjectAdapter(&tv) ); // ???
+//	v.push_back( &tv ); // error
+	v.push_back( new ObjectAdapter(&tv) ); // ok
 }
 
 
