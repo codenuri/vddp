@@ -59,10 +59,18 @@ public:
 class AddRectCommand : public AddCommand
 {
 public:
-	AddRectCommand(std::vector<Shape*>& v) : AddCommand(v) {}
+	// 파생 클래스 만들때 생성자 인자로 받은것을
+	// 기반 클래스로만 전달하는 생성자를 만드는 경우가 많습니다.
+	// => 아래 처럼
+//	AddRectCommand(std::vector<Shape*>& v) : AddCommand(v) {}
+
+	// 이렇때는 C++11 의 생성자 상속 문법을 사용하면 편리합니다.
+	using AddCommand::AddCommand;	// 클래스이름::생성자이름
+	
 
 	Shape* create_shape() override { return new Rect;}
 };
+
 
 class AddCircleCommand : public AddCommand 
 {
