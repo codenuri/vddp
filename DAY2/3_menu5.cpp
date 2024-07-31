@@ -90,21 +90,22 @@ public:
 
 int main()
 {
-	MenuItem m1("참치  김밥", 11);
-	MenuItem m2("소고기 김밥", 12);
+	PopupMenu* root = new PopupMenu("ROOT");
+	PopupMenu* pm1 = new PopupMenu("색상 변경");
+	PopupMenu* pm2 = new PopupMenu("해상도 변경");
 
-	PopupMenu kimbab("김밥류");
-	kimbab.add(&m1);
-	kimbab.add(&m2);
+	root->add(pm1);
+	root->add(pm2);
 
-	MenuItem m5("라면", 51);
+	pm1->add( new MenuItem("RED",   11));
+	pm1->add( new MenuItem("GREEN", 12));
+	pm1->add( new MenuItem("BLUE",  13));
 
-	PopupMenu pm("오늘의 점심");
+	pm2->add( new MenuItem("HD",   21));
+	pm2->add( new MenuItem("FHD",  22));
+	pm2->add( new MenuItem("UHD",  23));
 
-	pm.add(&kimbab);   
-	pm.add(&m5);
-
-	pm.command(); 	
+	// 이제 시작하려면 ???
 
 }
 
