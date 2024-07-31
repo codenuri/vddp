@@ -22,6 +22,6 @@ int main()
 
 	// #2. Command 패턴 사용
 	// => 모니터의 밝기를 변경하는 명령객체를 만들어서 실행
-	BrightnessCommand cmd(&m, 90);
+	BrightnessCommand cmd(m, 90);
 	cmd.execute();
 }
