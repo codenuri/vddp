@@ -9,7 +9,19 @@
 
 ICalc* load_proxy()
 {
+	void* addr = ec_load_module("CalcProxy.dll");
+						// windows : LoadLibrary()
+						// linux   : dlopen()
 
+	using F = ICalc*(*)();
+
+	F f = (F)ec_get_function_address(addr, "create");
+						// windows : GetProcAddress()
+						// linux   : dlsym()
+
+	ICalc* calc = f();
+
+	return calc;
 }
 
 int main()
