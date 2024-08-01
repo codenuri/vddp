@@ -13,6 +13,11 @@ private:
 	static Cursor* sinstance;	
 	static std::mutex mtx;
 public:
+
+	// 아래 함수가 100번 호출된다고 생각해 보세요
+	// 최초 호출 : 객체 생성.
+	// 99번 호출 : 생성된 객체 반환만.  하지만 lock/unlock 수행됩니다.
+	//							     성능 이슈
 	static Cursor& get_instance()
 	{
 		mtx.lock();
