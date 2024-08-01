@@ -73,7 +73,7 @@ public:
 // Rect* r1 = new Rect;	// 생성자 호출
 // Rect* r2 = new Rect; // 생성자 호출
 // Rect* r3 = new Rect; // 생성자 호출. 생성자는 "객체당 한번" 호출
-
+/*
 // C# 코드
 class Car 
 {
@@ -84,7 +84,7 @@ class Car
 Car c1 = new Car; 	// static 생성자 호출
 					// instance 생성자 호출
 Car c2 = new Car;	// instance 생성자 호출
-
+*/
 
 
 class Circle : public Shape
@@ -93,11 +93,9 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
 	static Shape* create() { return new Circle; }
+
+	inline static AutoRegister ar{2, &Circle::create};
 };
-
-
-
-
 
 
 int main()
@@ -105,9 +103,6 @@ int main()
 	std::vector<Shape*> v;
 
 	ShapeFactory& factory = ShapeFactory::get_instance();
-
-	factory.register_shape( 1, &Rect::create );
-	factory.register_shape( 2, &Circle::create );
 
 
 	while (1)
