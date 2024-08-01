@@ -30,6 +30,8 @@ int main()
 	int n1 = calc1->Add(10, 20);
 	int n2 = (*calc1).Add(10, 20);
 
+	std::cout << n1 << std::endl;
+	std::cout << n2 << std::endl;
 }
 
 /*
