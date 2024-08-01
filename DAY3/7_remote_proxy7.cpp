@@ -12,18 +12,27 @@ class sp
 {
 	T* obj;
 public:
-	sp(T* p = nullptr ) : obj(p) { }
-	sp(const sp& other) : obj(other.obj) { }
-	~sp() {}
-};
+	sp(T* p = nullptr ) : obj(p) { if ( obj != nullptr ) obj->AddRef(); }
+	sp(const sp& other) : obj(other.obj) { if ( obj != nullptr ) obj->AddRef();}
+	
+	~sp() {if ( obj != nullptr ) obj->Release();}
 
+	// -> 와 * 을 연산자 재정의 해서 "raw pointer" 와 동일하게 사용할수 있도록
+	T* operator->() { return obj;}
+	T& operator*() { return *obj;}
+
+};
 int main()
 {
 	sp<ICalc> calc1 = load_proxy();
 	sp<ICalc> calc2 = calc1;
+
+	int n1 = calc1->Add(10, 20);
+	int n2 = (*calc1).Add(10, 20);
+
 }
 
-
+/*
 int main()
 {
 	ICalc* calc1 = load_proxy();	
@@ -37,7 +46,7 @@ int main()
 	calc2->Release();
 	std::cout << "---------------\n";
 }
-
+*/
 
 
 
