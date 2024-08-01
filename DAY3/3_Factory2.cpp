@@ -83,6 +83,11 @@ int main()
 
 	ShapeFactory& factory = ShapeFactory::get_instance();
 
+	// 이제 제품을 공장에 등록하고 사용하면 됩니다.
+	factory.register_shape( 1, &Rect::create );
+	factory.register_shape( 2, &Circle::create );
+
+
 	while (1)
 	{
 		int cmd;
