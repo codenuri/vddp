@@ -31,9 +31,7 @@ class Circle : public Shape
 {
 public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
-
 	static Shape* create() { return new Circle; }
-
 	Shape* clone() override { return new Circle(*this); }
 };
 
@@ -54,9 +52,9 @@ public:
 	{
 		Shape* s = nullptr;
 
-		auto it = create_map.find(key);
+		auto it = prototype_map.find(key);
 
-		if ( it != create_map.end() )
+		if ( it != prototype_map.end() )
 		{
 			s = it->second->clone(); // 견본객체->clone()
 		}
