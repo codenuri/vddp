@@ -49,7 +49,7 @@ struct AutoRegister
 };
 
 // 전역변수의 생성자가 호출되는 시점을 생각해 보세요
-AutoRegister ar(1, &Rect::create);
+//AutoRegister ar(1, &Rect::create);
 
 
 
@@ -61,11 +61,29 @@ public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
 
 	static Shape* create() { return new Rect; }
+
+	// static 멤버 데이타의 특징을 생각해 보세요
+	// => 모든 객체가 공유
+	// => 객체가 없어도 프로그램 실행시 static 멤버 데이타는 생성됩니다.
+	// => ar 의 생성자는 main 함수 이전에 이미 호출됩니다.
+	inline static AutoRegister ar{1, &Rect::create};
 };
 
+//			Rect::ar 의 생성자는 최초에 1회 호출.
+// Rect* r1 = new Rect;	// 생성자 호출
+// Rect* r2 = new Rect; // 생성자 호출
+// Rect* r3 = new Rect; // 생성자 호출. 생성자는 "객체당 한번" 호출
 
+// C# 코드
+class Car 
+{
+	public Car() {} // instance 생성자
+	static Car() {} // static 생성자
+}
 
-
+Car c1 = new Car; 	// static 생성자 호출
+					// instance 생성자 호출
+Car c2 = new Car;	// instance 생성자 호출
 
 
 
