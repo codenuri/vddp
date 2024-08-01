@@ -10,6 +10,7 @@ struct IDNS
 
 	virtual ~IDNS() {}
 };
+// git 에서 proxy1.cpp 다시 받으세요
 
 class DNS : public IDNS
 {
@@ -28,7 +29,7 @@ public:
 
 int main()
 {
-	DNS dns("www.samsung.com");
+	DNS dns; 
 
-	std::cout << dns.get_ip() << std::endl;
+	std::cout << dns.get_ip(www.samsung.com) << std::endl;
 }
