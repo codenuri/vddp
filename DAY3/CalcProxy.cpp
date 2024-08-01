@@ -13,7 +13,12 @@ public:
 	int Sub(int a, int b) { return ec_send_server(server, 2, a, b);}
 };
 
+extern "C" __declspec(dllexport)
 ICalc* create()
 {
 	return new Calc;
 }
+
+// cl CalcProxy.cpp    /LD 
+
+// /LD 옵션이 DLL로 빌드하라는 옵션
