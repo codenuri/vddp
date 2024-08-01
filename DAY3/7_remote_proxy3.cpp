@@ -18,6 +18,11 @@ public:
 	int Sub(int a, int b) { return ec_send_server(server, 2, a, b);}
 };
 
+ICalc* create()
+{
+	return new Calc;
+}
+
 // 위 Proxy(Calc) 클래스의 제작자 : Server 제작자
 // 위 Proxy(Calc) 클래스의 사용자 : Client 제작자
 
@@ -29,7 +34,7 @@ int main()
 	// Calc* calc = new Calc;
 
 	// 약한 결합으로 사용해야 합니다
-	ICalc* calc = new ?;
+	ICalc* calc = create();
 	
 	int n1 = calc->Add(10, 20);
 	int n2 = calc->Sub(10, 20);
