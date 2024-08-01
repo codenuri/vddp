@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include "helper.h"
 
 
 class Image
@@ -25,6 +26,8 @@ public:
 
 class ImageFactory
 {
+	MAKE_SINGLETON(ImageFactory)
+
 	std::map<std::string, Image*> image_map;
 public:
 	Image* create( const std::string& url)
@@ -48,7 +51,7 @@ public:
 
 int main()
 {
-	ImageFactory factory;
+	ImageFactory& factory = ImageFactory::get_instance();
 
 	Image* img1 = factory.create("www.naver.com/a.png");
 	img1->draw();
