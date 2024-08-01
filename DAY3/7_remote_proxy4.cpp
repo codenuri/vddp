@@ -7,6 +7,7 @@
 
 #include "ICalc.h"
 
+/*
 ICalc* load_proxy()
 {
 	void* addr = ec_load_module("CalcProxy.dll");
@@ -23,10 +24,11 @@ ICalc* load_proxy()
 
 	return calc;
 }
+*/
 
 int main()
 {
-	ICalc* calc = create();
+	ICalc* calc = load_proxy();
 	
 	int n1 = calc->Add(10, 20);
 	int n2 = calc->Sub(10, 20);
