@@ -1,12 +1,22 @@
 #pragma once
 
-// ICalc.h 로 옮기세요
-struct ICalc
+// reference couting 기반으로 수명을 관리한다면
+// 참조계수용 함수는 반드시 인터페이스에 있어야 합니다.
+
+struct IRefCount
+{
+	virtual void AddRef() = 0;
+	virtual void Release() = 0;
+	virtual ~IRefCount() {}
+};
+
+struct ICalc : public IRefCount
 {
 	virtual int Add(int, int ) = 0;
 	virtual int Sub(int, int ) = 0;
 	virtual ~ICalc() {}
 };
+
 
 
 
