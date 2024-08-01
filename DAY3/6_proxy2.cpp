@@ -41,14 +41,29 @@ public:
 			return "100.100.100.100";
 		}
 		// 캐쉬에 없으면 실제 "DNS" 클래스 사용
-		DNS dns;
-		
+		DNS dns;	
 		return dns.get_ip(url);
 	}
 };
 int main()
 {
-	DNS dns; 
+//	DNS dns; 	
+	DNSProxy dns;
 
-	std::cout << dns.get_ip("www.samsung.com") << std::endl;
+//	std::cout << dns.get_ip("www.samsung.com") << std::endl;
+	std::cout << dns.get_ip("www.naver.com") << std::endl;
 }
+
+// proxy : 다양한 용도의 대행자를 만드는 패턴
+
+// virtual proxy : 위와 같은 캐쉬 기능을 제공하는 proxy
+// remote proxy : 원격지 서버를 대행하는 proxy
+
+// decorator : 객체에 기능의 추가. original 객체도 계속 사용가능
+//FileStream fs;
+//ZipDecorator zd(&fs);
+//zd.write("aaa");
+//fs.write("aaa"); // original 객체도 계속 사용가능
+
+// proxy : original 객체를 사용하지 말고 proxy 를 사용하라는 의도
+//         DNS 사용하지 말고 DNSProxy 사용하라는 것
