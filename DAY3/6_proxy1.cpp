@@ -31,5 +31,5 @@ int main()
 {
 	DNS dns; 
 
-	std::cout << dns.get_ip(www.samsung.com) << std::endl;
+	std::cout << dns.get_ip("www.samsung.com") << std::endl;
 }
