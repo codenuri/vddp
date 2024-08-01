@@ -20,6 +20,10 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 };
 
+// 공장을 도입하므로
+// => 새로운 도형이 추가되면
+// => 코드의 여러곳이 아닌 한곳(공장) 만 수정되면 됩니다.
+// => 코드 수정의 최소화 할수 있습니다.
 
 class ShapeFactory
 {
