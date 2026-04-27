@@ -32,5 +32,12 @@ int main()
 //	pd->color = 10; // UB 잘못된 코드
 	// 따라서 static_cast 는 p가 가리키는 객체가 Dog 라는 확신이 있을때 만 사용해야 한다.
 
-	
+	// 핵심 #2. dynamic_cast
+	// => 실행시간 캐스팅 이라는 의미로 "dynamic_cast"
+	// => 실행시간에 p 가 가리키는 곳이 Dog 가 맞는지 확인한후 캐스팅
+	// Dog 가 아니라면 : 0 반환
+	// Dog 가 맞다면   : 주소 반환
+	Dog* pd2 = dynamic_cast<Dog*>(p);
+
+	std::cout << pd2 << std::endl;
 }
