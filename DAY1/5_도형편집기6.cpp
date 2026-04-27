@@ -1,7 +1,17 @@
 #include <iostream>
 #include <vector>
 
-// 핵심 #7.
+// 핵심 #7. 디자인 패턴이란 ?
+// => 1994 년 발간된 책의 제목
+// => 4명의 개발자가 당시 유행하던 다양한 기법에다가 이름을 부여 한 것
+// => 4명의 갱단(gangs). Gang's of four 라는 의미로 "GOF's Design Pattern"
+// => 23개의 이름.
+
+// 핵심 #8. prototype 패턴
+// => 견본이 되는 객체를 먼저 생성하고, 복사본을 사용해서 새로운 객체 생성
+// => clone() 가상함수
+// => 3일차 오전에 더 좋은 예제등장. 
+
 
 class Shape
 {
@@ -87,12 +97,11 @@ int main()
 				v.push_back( new Circle(*c));
 			}
 			*/
-			// 방법 #2. 다형성(Polymorphism)
-			
+			// 방법 #2. 다형성(Polymorphism)			
 			v.push_back( v[k]->clone() ); // 다형성(가상함수) 사용
 										  // k 번째 도형의 종류를 알필요 없다
-										// 새로운 도형이 추가되어도 수정되지 않는다
-										// OCP 만족
+										  // 새로운 도형이 추가되어도 수정되지 않는다
+										  // OCP 만족
 
 			// 아래 격언을 생각해 보세요
 			// => Don't Ask Do It
