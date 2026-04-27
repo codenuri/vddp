@@ -9,8 +9,9 @@
 // => strategy 패턴 : 인터페이스기반 교체
 // => policy base design : 템플릿 인자로 교체
 
-
-template<typename T, typename Allocator >
+// std::allocator<T> : C++ 표준이 제공하는 메모리 할당기
+//					   내부적으로 new/delete 사용
+template<typename T, typename Allocator = std::allocator<T> >
 class vector
 {
 	T* buff = nullptr;
@@ -50,6 +51,7 @@ int main()
 {
 	// int : 저장할 요소의 타입
 	// MallocAllocator<int> : 메모리 할당기 이름
-	vector<int, MallocAllocator<int> > v(4);
+	//vector<int, MallocAllocator<int> > v(4);
+	vector<int> v(4); // 표준 할당기인 "std::allocator<T>" 사용
 	
 }
