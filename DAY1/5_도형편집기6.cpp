@@ -10,10 +10,14 @@ public:
 	virtual ~Shape() {}
 
 	void set_color(int c) { color = c;}
-
 	virtual int get_area() { return 0; }
-
 	virtual void draw() { std::cout << "draw Shape\n"; }
+
+	// 자신의 복사본을 만드는 가상함수는 아주 널리 사용되는 좋은 기술입니다.
+	virtual Shape* clone()
+	{
+		return new Shape(*this); // 나와 동일한 모양의 새로운 객체
+	}
 };
 
 
@@ -22,17 +26,25 @@ class Rect : public Shape
 {
 public:
 	void draw() { std::cout << "draw Rect\n"; }
+
+	Shape* clone()
+	{
+		return new Rect(*this); 
+	}
 };
+
+
 class Circle : public Shape
 {
 public:
 	void draw() { std::cout << "draw Circle\n"; }
+
+	Shape* clone()
+	{
+		return new Circle(*this); 
+	}
 };
-class Triangle : public Shape
-{
-public:
-	void draw() { std::cout << "draw Triangle\n"; }
-};
+
 int main()
 {
 	std::vector<Shape*> v; 
@@ -61,8 +73,30 @@ int main()
 			std::cin >> k;
 
 			// k 번째 도형을 복사해서 새로운 도형을 생성후 v 에 추가
-
 			// 어떻게 해야 할까요 ? k 번째 도형이 뭘까요 ?
+
+			// 방법 #1. dynamic_cast 로 조사하자
+			// => OCP 를 만족할수 없는 좋지 않은 디자인 !
+			/*
+			if ( Rect* r = dynamic_cast<Rect*>(v[k]); r != nullptr )
+			{
+				v.push_back( new Rect(*r));
+			}
+			else if ( Circle* c = dynamic_cast<Circle*>(v[k]); c != nullptr )
+			{
+				v.push_back( new Circle(*c));
+			}
+			*/
+			// 방법 #2. 다형성(Polymorphism)
+			
+			v.push_back( v[k]->clone() ); // 다형성(가상함수) 사용
+										  // k 번째 도형의 종류를 알필요 없다
+										// 새로운 도형이 추가되어도 수정되지 않는다
+										// OCP 만족
+
+			// 아래 격언을 생각해 보세요
+			// => Don't Ask Do It
+			// => 물어보지 말고, 시켜라. 
 		}
 	}
 }
