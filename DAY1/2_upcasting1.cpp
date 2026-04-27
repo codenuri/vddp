@@ -46,7 +46,10 @@ int main()
 	// => 사용자가 책임지고 접근하겠다고 표시해야 합니다.
 	//    캐스팅
 	static_cast<Dog*>(p3)->color = 10;
-	
+
+	// => 단 이경우 p3 가 가리키는 곳이 Dog 객체가 아니라면
+	//    UB(Undefined Behavior, 미정의 동작 발생), 잘못된 코드
+
 }
 
 
