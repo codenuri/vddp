@@ -14,21 +14,24 @@
 // Validation 정책이 지켜야 하는 규칙을 담은 인터페이스
 struct IValidator 
 {
-	virtual bool validate(const std::string& s, char) = 0;
+	virtual bool validate(const std::string& s, char c) = 0;
 	virtual bool is_complete(const std::string& s) { return true;}
 
 	virtual ~IValidator() {}
 };
-
 // 주민 등록 번호 : 901  1     확인
-
-
 
 
 class Edit
 {
 	std::string data;
+
+	//----------------------------------------
+	IValidator* val = nullptr;
 public:
+	void set_validator(IValidator* v) { val = v; }
+	//----------------------------------------
+
 	std::string get_data()
 	{
 		data.clear();
@@ -37,10 +40,10 @@ public:
 		{
 			char c = _getch();
 
-			if ( c == 13 ) 
+			if ( c == 13 && (  val == nullptr || val->is_complete(data) )  ) 
 				break;
 
-			if ( isdigit(c) )
+			if ( val == nullptr || val->validate(data, c) ) // 입력 값의 유효성을 validation 객체를 통해서 확인
 			{
 				data.push_back(c);
 				std::cout << c;
