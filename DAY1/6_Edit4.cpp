@@ -53,10 +53,25 @@ public:
 		return data;
 	}
 };
+// 이제 Edit 같은 입력도구에서 사용될 다양한 validator 를 제공하면 됩니다.
+class LimitDigitValidator : public IValidator 
+{
+	int value = 0;
+public:
+	LimitDigitValidator(int v) : value(v) {}
 
+	bool validate(const std::string& s, char c) override 
+	{
+		return s.size() < value && isdigit(c);
+	}
+};
 int main()
 {
 	Edit e;	
+	
+	// Edit 객체 e 에 유효성 확인 객체 연결
+	LimitDigitValidator v(5); // 5자리까지의 숫자만 입력 가능
+	e.set_validator(&v);
 
 	while (1)
 	{
