@@ -20,3 +20,20 @@
 // => #2. 실행시간에도 교체 가능
 // => 전략패턴(strategy) 패턴
 // => "알고리즘(validation정책)을 캡슐(별도의 클래스)화 해서 교체 가능하게 한다"
+
+// 항상 Strategy 가 teplate method 보다 좋은것은 아닙니다.
+// Edit 예제
+// => strategy 가 좀더 좋은 디자인
+
+// 도형편집기
+// Shape <- Rect 관계
+
+// 사각형을 어떻게 그릴것인가 ? (draw_imp)
+// => 실행 교체할 필요 없다
+// => 다른 클래스가 사각형 그림 그리는 방법이 필요하지 않다
+// => 그리고, 사각형을 그리려면 private 멤버 접근이 필요하다.
+//    template method 는 결국 Rect 의 멤버 함수로 구현되므로
+//    private 멤버 접근 가능
+
+// => 결국, 도형편집기의 draw/draw_imp() 관계는
+//    strategy 보다 template method 가 좋은 설계. 
