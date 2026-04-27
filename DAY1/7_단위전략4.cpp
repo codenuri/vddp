@@ -21,7 +21,7 @@ class vector
 	Allocator alloc;	// 메모리 할당기. 어떤 할당기가 될지는
 						// vector 사용 할때 2번째 템플릿 인자로 전달
 public:
-	vector(int sz, IAllocator<T>* a ) : size(sz), alloc(a) {}
+	vector(int sz) : size(sz)
 	{
 		buff = alloc.allocate(sz);
 	}

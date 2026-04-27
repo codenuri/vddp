@@ -25,7 +25,7 @@ class vector
 	IAllocator<T>* alloc = nullptr;
 
 public:
-	vector(int sz, IAllocator<T>* a ) : size(sz), alloc(a) {}
+	vector(int sz, IAllocator<T>* a ) : size(sz), alloc(a)
 	{
 		buff = alloc->allocate(sz);
 	}
@@ -37,7 +37,7 @@ public:
 
 // 이제 컨테이너에서 사용할 다양한 메모리 할당기를 제공하면 됩니다.
 template<typename T> 
-class MallocAllocator : public IValidator<T> 
+class MallocAllocator : public IAllocator<T> 
 {
 public:
 	virtual T* allocate(std::size_t sz) 
