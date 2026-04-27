@@ -5,13 +5,19 @@
 // => 문법적인 규칙이 아닌
 // => 객체지향 디자인의 원칙
 
+// 핵심 #6. 기반 클래스 멤버 함수중에서 파생 클래스가 override 하게 되는 것이 있다면
+//         반드시 가상함수로 만들어야 한다.
+// => 문법적 규칙이 아닌 
+// => 디자인의 원칙
+
+
 class Shape
 {
 	int color = 0;
 public:
 	virtual ~Shape() {}
 
-	void draw() { std::cout << "draw Shape\n"; }
+	virtual void draw() { std::cout << "draw Shape\n"; }
 };
 
 class Rect : public Shape
