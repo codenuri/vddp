@@ -25,7 +25,7 @@ public:
 				std::cout << c;
 			}
 		}
-		std::cin >> std::endl;
+		std::cout << std::endl;
 		return data;
 	}
 };
