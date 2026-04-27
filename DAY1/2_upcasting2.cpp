@@ -4,7 +4,15 @@ class Animal
 {
 public:
 	int age;
+
+	virtual ~Animal() {}  // 가상 소멸자 문법 - 가상함수 설명에서 보다 자세히 
+
+	// 가상함수가 한개 이상 있으면
+	// => 가상함수 테이블이 만들어 지고
+	// => 그안에 타입 정보도 포함
+	// => 따라서 dynamic_cast 사용가능 
 };
+
 class Dog : public Animal
 {
 public:
@@ -40,4 +48,9 @@ int main()
 	Dog* pd2 = dynamic_cast<Dog*>(p);
 
 	std::cout << pd2 << std::endl;
+
+	// dynamic_cast 를 사용하려면
+	// => 각 객체는 자신이 무슨 타입인지 타입정보를 보관해야 한다.
+	// => C++에서는 타입정보가 가상함수 테이블에 놓이게 된다.
+	// => 따라서, 가상함수가 있는 타입만 dynamic_cast 사용가능. 
 }
