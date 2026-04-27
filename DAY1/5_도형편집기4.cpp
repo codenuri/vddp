@@ -39,22 +39,19 @@ int main()
 			{
 //				s->draw();  // error. Shape 에는 draw() 가 없다
 
-				Rect* r = dynamic_cast<Rect*>(s);
-
-				if ( r != nullptr )
+				
+				// C++17 에서 나온 새로운 if 문
+				// if ( 초기화 구문; 조건식 )
+				if ( Rect* r = dynamic_cast<Rect*>(s); r != nullptr )
 				{
 					r->draw();
-				}
-
-				Circle* c = dynamic_cast<Circle*>(s);
+				}			
 				
-				if ( c != nullptr )
+				if ( Circle* c = dynamic_cast<Circle*>(s); c != nullptr )
 				{
 					c->draw();
 				}
-
 			}
-
 		}
 	}
 }
