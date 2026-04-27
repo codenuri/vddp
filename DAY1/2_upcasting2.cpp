@@ -1,5 +1,13 @@
 #include <iostream>
 
+// 핵심 : static_cast 와 dynamic_cast 의 차이점.
+// 컴파일 시간 캐스팅
+// 실행시간 캐스팅 
+
+// 처음 배우면 dynamic_cast 가 좋아 보이지만!!
+// => 좋은 디자인 에서는 "dynamic_cast" 는 되도록 사용하지 말자!  입니다.
+// => 오후 수업부터 등장.. 
+
 class Animal
 {
 public:
