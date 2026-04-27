@@ -64,11 +64,15 @@ public:
 	{
 		return s.size() < value && isdigit(c);
 	}
+	bool is_complete(const std::string& s) override 
+	{
+		return s.size() == value;
+	}
 };
 int main()
 {
 	Edit e;	
-	
+
 	// Edit 객체 e 에 유효성 확인 객체 연결
 	LimitDigitValidator v(5); // 5자리까지의 숫자만 입력 가능
 	e.set_validator(&v);
