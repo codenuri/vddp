@@ -28,7 +28,16 @@ public:
 //-----------------------
 // 이제 메모리 할당 방법을 변경하려면
 // 1. vector 파생 클래스를 만들어서
-// 2. 약속된 2개의 가상함수 allocate/deallocate 를 override 
+// 2. 약속된 2개의 가상함수 allocate/deallocate 를 override 해서
+//    메모리 할당 방식 제공
+
+// 이 방식의 단점
+// => 파생 클래스가 vector 기능과 메모리 할당 기능을 소유
+// => STL 에는 vector 뿐아니라 list, map 등의 많은 컨테이너가 있다
+// => list, map 등도 메모리 할당 기능 변경하려면 모두 파생 클래스 필요
+// => 즉, 메모리 할당 방법을 공유할수없다
+
+
 
 
 int main()
