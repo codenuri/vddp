@@ -4,7 +4,10 @@
 // 정의 : 순수 가상함수가 1개 이상 있는 클래스
 // 특징 : 객체를 생성할수 없다. 
 // 의도 : 특정 멤버 함수는 반드시 만들어야 한다고 약속하는 것
-class Shape
+
+
+//abstract class Shape // java, C#
+class Shape			   // C++
 {
 public:
 	virtual void draw() = 0; // 순수 가상 함수(pure virtual function)
