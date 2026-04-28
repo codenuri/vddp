@@ -25,7 +25,7 @@ class Decorator : public IDraw
 	IDraw* origin; 
 	// int x, y;
 public:	
-	Decrator(IDraw* o) : origin(o) {}
+	Decorator(IDraw* o) : origin(o) {}
 
 	void draw() { origin->draw();}
 };
