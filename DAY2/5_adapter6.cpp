@@ -27,4 +27,15 @@ int main()
 	stack<int> s; // 내부적으로 deque 사용
 	s.push(10);
 
+//	std::stack<int, std::vector<int>> s3; 
 }
+
+// cppreference.com  접속
+// 1번째 화면에서 "container library" 선택
+
+// Text, TextView 예제(adaptor1.cpp, adaptor2.cpp)
+// => GOF's 의 디자인 패턴 방식의 전통적인 예제
+
+// adaptor3 ~ 6.cpp 의 stack
+// => C++ 스타일(STL 설계) 방식의 adaptor 코드
+// => 요즘 유행하는 스타일이므로 잘 알아 두세요.
