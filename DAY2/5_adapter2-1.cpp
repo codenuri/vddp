@@ -32,10 +32,16 @@ public:
 
 FileStream fs("a.txt");
 ZipDecorator zd(&fs);
-fs.write("hello");
-zd.write("hello");
+
+fs.write("hello"); // 원본 객체 사용
+zd.write("hello"); // 사용법이 원본 객체와 동일합니다
+				   // => 즉, 인터페이스는 변경되지 않고, 기능(압축)을 추가한것
+				   // => decorator 패턴
 
 TextView tv("hello");
 ObjectAdaptor oa(&tv);
-tv.show();
-oa.draw();
+
+tv.show();	// 원본 객체 사용
+oa.draw();	// 사용법(인터페이스)가 변경된것, 기능은 동일
+			// => 기능은 동일한데, 인터페이스를 변경한것
+			// => adaptor 패턴
