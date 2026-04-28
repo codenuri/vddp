@@ -49,9 +49,21 @@ int main()
 // => effective-c++ 책의 저자인 "scott-meyer" 가 처음 제안한 코드
 // => 그래서 이름이 "meyer's singleton" 이라고 합니다.
 // => C++ 진영에서 가장 좋은 싱글톤 구현 이라고 알려진 코드
-
-
-
-
+/*
+// 참고
+// C# 의 static class : 객체를 생성할수 없다.
+static class Cursor 
+{
+	static int x;
+	static int y;
+};
+// 어차피 오직 한개 객체라면 객체 필요 없이 모든 멤버를 static 으로 하면 되지 않나요 ?
+// 그리고 클래스 자체도 static 으로
+// => monostate pattern ( GOF's 23개 패턴에는 없지만, 나름 유명한 패턴)
+// => 이경우 기반 클래스로 사용될수 없고, 가상함수등도 만들수 없습니다.
+// => 하지만 싱글톤으로 만든 경우는 상속가능, 가상함수도 가능
+Cursor.x = 10;
+Cursor.y = 10;
+*/
 
 
