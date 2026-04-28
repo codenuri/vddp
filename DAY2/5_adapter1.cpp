@@ -45,17 +45,24 @@ public:
 // => "TextView" 는 Shape로 부터 상속받지 않았고, draw() 함수 도 없다. 
 
 // 사용할수 있도록 변경해 봅시다.
-class Text : public TextView, public Shape 
+class Text : public TextView,  // TextView 기능을 물려 받고
+		     public Shape      // 도형 편집기 시스템의 요구 조건도 만족
 {
 public:
-	Text(const std::string& s) {}
+	Text(const std::string& s) : TextView(s) {}
 
-	
+	// 아래 코드가 핵심 입니다.
+	void draw() override 
+	{
+		TextView::show();
+	}
 };
-
 int main()
 {
 	std::vector<Shape*> v;
+
+	v.push_back( new Text("hello") );
+	v[0].draw();
 }
 
 
