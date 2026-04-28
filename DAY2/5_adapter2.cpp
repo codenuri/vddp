@@ -42,17 +42,20 @@ public:
 
 // 위 Text 는 클래스 어답터
 // 아래 코드가 객체 어답터
-class ObjectAdaptor : public Shape 
+class ObjectAdapter : public Shape 
 {
-	Shape* origin; // [핵심] 이미 생성되어 있는 객체를 가리키는 포인터(또는 참조)
+	TextView* origin; // [핵심] 이미 생성되어 있는 객체를 가리키는 포인터(또는 참조)
 public:
-	ObjectAdaptor(Shape* s) : origin(s) {}
+	ObjectAdapter(TextView* s) : origin(s) {}
 
+	// 아래 코드가 핵심 : 객체의 인터페이스를 변경하는 코드
+	// "show" 를 "draw" 로 변경해서 시스템 요구 조건을 만족
 	void draw() override 
 	{
-		// ?
-	 }
+		origin->show();
+	}
 };
+
 
 
 int main()
@@ -65,10 +68,13 @@ int main()
 	TextView tv("hello");		// TextView : 클래스
 								// tv       : 객체
 
+
 	// 이미 생성된 TextView 의 객체 "tv" 를 v 에 넣을수 있을까요 ?
-	v.push_back(&tv); // error. tv 는 Shape 에서 상속되지 않음. 
+//	v.push_back(&tv); // error. tv 는 Shape 에서 상속되지 않음. 
 
+	v.push_back(new ObjectAdapter(&tv));
 
+	v[1]->draw();
 
 }
 
