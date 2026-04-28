@@ -86,7 +86,13 @@ int main()
 
 	// 이번 단계의 핵심
 	auto m = root->submenu(0);
-	m->add( new MenuItem("BLACK", 13)); // ??? 의도 : 색상 팝업 메뉴에 새로운 메뉴 추가
+//	m->add( new MenuItem("BLACK", 13)); // 의도 : 색상 팝업 메뉴에 새로운 메뉴 추가
+										// 하지만 error.
+										// 현재 m 은 "PopupMenu" 객체가 맞지만 
+										// m 의 타입은 BaseMenu* 인데, BaseMenu 에는 add 가 없다
+
+	// 해결책 #1. 캐스팅
+	static_cast<PopupMenu*>(m)->add( new MenuItem("BLACK", 13));
 
 
 	root->command();
