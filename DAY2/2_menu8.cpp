@@ -107,7 +107,19 @@ int main()
 
  	root->submenu(0)->add( new MenuItem("WHITE", 14)); 
 
+	// [참고] 아래 처럼 사용하면 예외 발생
 
+ 	root->submenu(2)->add( new MenuItem("WHITE", 14)); 
+	//		      ^ PopupMenu 가 아닌 MenuItem(PowerOff)
 
 	root->command();
 }
+
+// 가상함수가 오버헤드가 있지만
+// => 프로그램에서 가끔 호출된다면 무시하세요
+// => 루프 안에서 수만 ~ 수백만 번 호출되는 경우만 주의 하세요..
+
+// menu7.cpp : 캐스팅 필요
+// menu8.cpp : 캐스팅 필요 없음
+// static_cast<PopupMenu*>(root->submenu(0))->add( new MenuItem("WHITE", 14)); 
+//                         root->submenu(0) ->add( new MenuItem("WHITE", 14)); 
