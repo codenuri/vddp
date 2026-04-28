@@ -15,7 +15,10 @@ private:
 	Cursor(const Cursor&) = delete;				
 	Cursor& operator=(const Cursor&) = delete;	
 
-	static Cursor* instance;
+	// C++17 에서 추가된 inline static 을 사용하면 
+	// => static 멤버 데이타 만들때 클래스 외부 선언이 없어도 됩니다.
+	// => 단, visual studio 사용하시는 분은 언어 Option 에서 C++17로 변경해야 합니다.
+	inline static Cursor* instance;
 public:
 	static Cursor& get_instance() 
 	{
