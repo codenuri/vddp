@@ -46,7 +46,14 @@ int main()
 	Emoticon e(&ps);
 	e.draw();	
 
-	Frame f(&ps); // ps 객체에 액자 기능 추가
-	f.draw();	
+//	Frame f(&ps); // ps 객체에 액자 기능 추가
+
+	Frame f( &e );  // ??? 기능을 추가한 객체에 다시 기능 추가				
+					// 즉, 기능의 중첩
+					// 현재 코드는 에러!!
+					// => 다음 소스에서 해결.. 
+	f.draw();	 
+
+
 }
 
