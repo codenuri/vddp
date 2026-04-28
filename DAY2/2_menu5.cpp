@@ -73,10 +73,7 @@ int main()
 	kimbab.add(&m2);
 
 	PopupMenu pm("오늘의 점심 메뉴");
-	pm.add(&kimbab);  // 이번 예제의 핵심
-					  // 현재 코드는 에러, 
-					  // 되도록하려면 어떻게 해야 할까요 ?
-					  // => 해결책은 다음 소스에서
+	pm.add(&kimbab); 
 	pm.add(&m3);
 
 	pm.command(); 
