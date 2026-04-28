@@ -17,6 +17,13 @@ public:
 	BaseMenu(const std::string& title) : title(title) {}
 	virtual ~BaseMenu() {}
 	std::string get_title() { return title;}
+
+
+	// 모든 파생 클래스의 공통의 특징은 기반 클래스에도 있어야 한다.
+	// => Rect, Circle 에 draw() 가 있다면 Shape 에도 draw() 가 있어야 한다.
+	// => MenuItem, PopupMenu 에 command() 가 있다면 BaseMenu 에도 command() 가 있어야 한다.
+	
+	virtual void command() = 0; // 구현은 파생 클래스가 반드시 하도록!!
 };
 
 class MenuItem : public BaseMenu
@@ -69,9 +76,6 @@ public:
 	
 			v[cmd-1]->command();
 		}
-
-
-
 	}
 };
 
