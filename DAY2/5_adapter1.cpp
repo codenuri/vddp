@@ -62,7 +62,7 @@ int main()
 	std::vector<Shape*> v;
 
 	v.push_back( new Text("hello") );
-	v[0].draw();
+	v[0]->draw();
 }
 
 
