@@ -27,3 +27,15 @@ public:
 		origin->show();
 	}
 };
+
+// 어떤 패턴들이 유사해 보인다면 "의도"를 생각하세요
+
+FileStream fs("a.txt");
+ZipDecorator zd(&fs);
+fs.write("hello");
+zd.write("hello");
+
+TextView tv("hello");
+ObjectAdaptor oa(&tv);
+tv.show();
+oa.draw();
