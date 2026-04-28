@@ -1,6 +1,7 @@
 #include <iostream>
 #include <mutex>
 
+template<typename T>
 class Singleton
 {
 private:
@@ -9,24 +10,26 @@ private:
 	Singleton(const Singleton&) = delete;				
 	Singleton& operator=(const Singleton&) = delete;	
 
-	inline static Singleton* instance = nullptr;
+	inline static T* instance = nullptr;   // <=== 
 	inline static std::mutex mtx;
 public:
-	static Singleton& get_instance() 
+	static T& get_instance()    // <===
 	{
 		std::lock_guard<std::mutex> g(mtx); 
 
 		if ( instance == nullptr )
-			instance = new Singleton;
+			instance = new T;   // <== 
 
 		return *instance;
 	}
 };
 
 // Mouse 클래스도 위와 동일한 방식의 Singleton 으로 만들고 싶다
-class Mouse : public Singleton
+class Mouse : public Singleton< Mouse >
 {
-
+};
+class Keyboard : public Singleton< Keyboard >
+{
 };
 
 
