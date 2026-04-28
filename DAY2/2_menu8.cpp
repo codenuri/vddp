@@ -86,11 +86,13 @@ int main()
 
 	// 이번 단계의 핵심
 	auto m = root->submenu(0);
-//	m->add( new MenuItem("BLACK", 13)); 
 
-	// 해결책 #1. 캐스팅
-	static_cast<PopupMenu*>(m)->add( new MenuItem("BLACK", 13));
-							
+	// 캐스팅 없이 아래 처럼 그냥 사용하려면 어떻게 해야 할까 ?
+	// 해결책은 "BaseMenu" 에도 add 필요
+	m->add( new MenuItem("BLACK", 13)); 
+
+ 	root->submenu(0)->add( new MenuItem("WHITE", 14)); 
+
 
 
 	root->command();
