@@ -20,6 +20,21 @@ public:
 	}
 };
 
+class PopupMenu 
+{
+	std::string title;
+	std::vector<MenuItem*> v;
+public:
+	PopupMenu(const std::string& title) : title(title) {}
+
+	void add(MenuItem* m) { v.push_back(m); }
+
+	// 핵심 : PopupMenu 를 선택할때 호출되는 함수
+	void command()
+	{
+	}
+};
+
 int main()
 {
 	MenuItem m1("김밥", 11);
