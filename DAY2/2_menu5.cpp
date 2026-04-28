@@ -3,14 +3,27 @@
 #include <vector>
 #include <conio.h> 
 
-class MenuItem 
+// C 언어를 학습할때 : 메모리 구조를 이해하기 위해 "메모리 그림을 그려" 보면서 학습 합니다
+// 디자인 패턴       : 클래스 구조를 이해하기 위해 "클래스 구조를 그려" 보면서 학습해야 합니다
+
+// 55page 메뉴예제.. 그곳에 정리
+
+// 모든 메뉴 클래스의 공통의 기반 클래스
+
+class BaseMenu
 {
 	std::string title;
+public:
+	BaseMenu(const std::string& title) : title(title) {}
+	virtual ~BaseMenu() {}
+	std::string get_title() { return title;}
+};
+
+class MenuItem : public BaseMenu
+{
 	int id;
 public:
-	MenuItem(const std::string& title, int id) : title(title), id(id) {}
-
-	std::string get_title() { return title;}
+	MenuItem(const std::string& title, int id) : BaseMenu(title), id(id) {}
 
 	void command()
 	{
@@ -20,13 +33,14 @@ public:
 	}
 };
 
-class PopupMenu 
+class PopupMenu : public BaseMenu
 {
-	std::string title;
-	std::vector<MenuItem*> v;
+//	std::vector<MenuItem*> v; // MenuItem 만 보관 가능
+	std::vector<BaseMenu*> v; // 모든 종류의 메뉴를 보관 가능
 public:
-	PopupMenu(const std::string& title) : title(title) {}
-	void add(MenuItem* m) { v.push_back(m); }
+	PopupMenu(const std::string& title) : BaseMenu(title) {}
+
+	void add(BaseMenu* m) { v.push_back(m); }
 
 
 	void command()
