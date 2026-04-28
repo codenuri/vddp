@@ -1,30 +1,30 @@
 #include <iostream>
 #include <mutex>
 
-class Cursor
+class Singleton
 {
 private:
-	Cursor() {}
+	Singleton() {}
 	
-	Cursor(const Cursor&) = delete;				
-	Cursor& operator=(const Cursor&) = delete;	
+	Singleton(const Singleton&) = delete;				
+	Singleton& operator=(const Singleton&) = delete;	
 
-	inline static Cursor* instance = nullptr;
+	inline static Singleton* instance = nullptr;
 	inline static std::mutex mtx;
 public:
-	static Cursor& get_instance() 
+	static Singleton& get_instance() 
 	{
 		std::lock_guard<std::mutex> g(mtx); 
 
 		if ( instance == nullptr )
-			instance = new Cursor;
+			instance = new Singleton;
 
 		return *instance;
 	}
 };
 
 // Mouse 클래스도 위와 동일한 방식의 Singleton 으로 만들고 싶다
-class Mouse 
+class Mouse : public Singleton
 {
 
 };
