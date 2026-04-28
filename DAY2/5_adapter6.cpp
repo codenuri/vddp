@@ -9,10 +9,15 @@ class stack
 {
 	C c;
 public:
-	void push(const T& e) { c.push_back(e); }
-	void pop()            { c.pop_back(); }
-	T&   top()            { return c.back();}
+	inline void push(const T& e) { c.push_back(e); }
+	inline void pop()            { c.pop_back(); }
+	inline T&   top()            { return c.back();}
 };
+
+#include <stack> // 이 안에 있는 C++ 표준 std::stack 이 위 코드와 거의 유사합니다.
+				 // "adaptor 패턴 + policy base design" 으로 만들어진 멋진 설계 입니다.
+				 // policy base design : 어떤 컨테이너를 사용할지 템플릿 인자로 교체
+				 // adaptor            : 컨테이너의 함수 이름은 stack 처럼 보이게 변경
 
 int main()
 {
