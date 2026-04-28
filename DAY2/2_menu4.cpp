@@ -63,12 +63,19 @@ public:
 
 int main()
 {
-	MenuItem m1("김밥", 11);
-	MenuItem m2("라면", 51);
+	MenuItem m1("참치김밥",   11);
+	MenuItem m2("소고기김밥", 12);
+	MenuItem m3("라면", 51);
+
+	PopupMenu kimbab("김밥류");
+	kimbab.add(&m1);
+	kimbab.add(&m2);
 
 	PopupMenu pm("오늘의 점심 메뉴");
-	pm.add(&m1);
-	pm.add(&m2);
+	pm.add(&kimbab);  // 이번 예제의 핵심
+					  // 현재 코드는 에러, 
+					  // 되도록하려면 어떻게 해야 할까요 ?
+	pm.add(&m3);
 
 	pm.command(); 
 }
