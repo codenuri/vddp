@@ -68,7 +68,6 @@ int main()
 	TextView tv("hello");		// TextView : 클래스
 								// tv       : 객체
 
-
 	// 이미 생성된 TextView 의 객체 "tv" 를 v 에 넣을수 있을까요 ?
 //	v.push_back(&tv); // error. tv 는 Shape 에서 상속되지 않음. 
 
@@ -77,6 +76,9 @@ int main()
 	v[1]->draw();
 
 }
+
+// 상속 : 클래스에 대한 기능 추가, 인터페이스 변경 (클래스 어답터)
+// 포함 : 객체에 대한 기능 추가(decorator), 인터페이스 변경 (객체 어답터)
 
 
 
