@@ -75,10 +75,12 @@ int main()
 
 	root->add(pm1);
 	root->add(pm2);
+//	pm1->add(pm2);
 
 	pm1->add( new MenuItem("RED",   11));
 	pm1->add( new MenuItem("GREEN", 12));
 	pm1->add( new MenuItem("BLUE",  13));
+	pm1->add( new MenuItem("WHITE", 14));
 
 	pm2->add( new MenuItem("HD",   21));
 	pm2->add( new MenuItem("FHD",  22));
