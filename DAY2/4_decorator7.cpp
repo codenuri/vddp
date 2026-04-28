@@ -52,17 +52,16 @@ public:
 	}
 };
 
-
 int main()
 {
 	FileStream fs("a.txt");
 	fs.write("hello"); 
 
-
 	ZipDecorator zd(&fs); 
-	zd.write("hello");	
-
+	zd.write("hello");	// 1. "hello" 압축하고 - 추가된 기능
+						// 2. fs.write() 에 전달
 
 	EncryptDecorator ed(&zd);
-	ed.write("hello"); 
+	ed.write("hello");  // 1. "hello" 암호화
+						// 2. zd.write() 에 전달
 }
