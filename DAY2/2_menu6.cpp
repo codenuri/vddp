@@ -85,7 +85,7 @@ int main()
 	pm2->add( new MenuItem("UHD",  23));
 
 	// 이제 메뉴를 시작하려면 ??
-	// ??
+	root->command();
 }
 
 
