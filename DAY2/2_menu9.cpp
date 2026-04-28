@@ -42,6 +42,13 @@ class PopupMenu : public BaseMenu
 public:
 	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
+	~PopupMenu()
+	{
+		for( auto m : v)
+			delete m;
+	}
+
+
 	void add(BaseMenu* m) { v.push_back(m); }
 
 
@@ -84,10 +91,8 @@ int main()
 	root->add(pm1);
 	root->add(pm2);
 	root->add( new MenuItem("POWEROFF", 31));
-
 	pm1->add( new MenuItem("RED",   11));
 	pm1->add( new MenuItem("GREEN", 12));
-
 	pm2->add( new MenuItem("HD",   21));
 	pm2->add( new MenuItem("FHD",  22));
 
