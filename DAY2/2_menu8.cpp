@@ -119,7 +119,10 @@ int main()
 // => 프로그램에서 가끔 호출된다면 무시하세요
 // => 루프 안에서 수만 ~ 수백만 번 호출되는 경우만 주의 하세요..
 
-// menu7.cpp : 캐스팅 필요
-// menu8.cpp : 캐스팅 필요 없음
+// menu7.cpp : 캐스팅 필요		- "안전성을 강조" - 코드에 의도를 명확히 드러낸것!. 가상함수가 아니므로
+//																	빠르고, BaseMenu 클래스 자체가 가볍다
+// menu8.cpp : 캐스팅 필요 없음 - "편리함을 강조". BaseMenu 가 약간 무거워진다
 // static_cast<PopupMenu*>(root->submenu(0))->add( new MenuItem("WHITE", 14)); 
 //                         root->submenu(0) ->add( new MenuItem("WHITE", 14)); 
+
+// 전통적인 디자인 패턴은 "8번 모델" - 교재 54 page. 
