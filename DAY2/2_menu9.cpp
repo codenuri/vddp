@@ -104,3 +104,17 @@ int main()
 	// 방법 #2. root 만 delete 하고 PopupMenu 소멸자가 자신의 하위 메뉴를 delete
 	delete root;
 }
+
+// 메뉴 예제를 통해서 꼭 알아두어야 할것
+
+// 1. 필요한 타입을 먼저 설계 한다.
+// => 파워 포인트 프로그램 이라면 "Rect", "Circle" 클래스를 먼저 설계
+// => 메뉴가 필요 하면 "MenuItem", "PopupMenu" 같은 클래스를 먼저 설계
+//    메뉴 자체를 하나의 타입으로 생각하는 관점
+
+// 2. 그리고, 적절한 디자인 패턴을 적용
+// => 모든 도형을 그릴때 공통의 작업이 있고, 각 도형별 다른 작업이 있다
+//    "template method" 적용
+// => PopupMenu 는 MenuItem 과 PopupMenu 모두를 보관 할수 있다
+//    "공통의 기반 클래스를 설계"
+//    "composite pattern"
