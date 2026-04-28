@@ -1,20 +1,28 @@
 #include <iostream>
 
-// PhotoSticker : 스티커 사진기 라고 생각해 보세요
+// PhotoSticker 와 기능 추가 클래스(Decorator) 는 공통의 기반 클래스가 필요하다.
+// => 그래야지, 중첩된 기능 추가가 가능
+struct IDraw
+{
+	virtual void draw() = 0;
+	virtual ~IDraw() {}
+};
 
-class PhotoSticker
+
+
+class PhotoSticker : public IDraw
 {
 public:
 	void take() { std::cout << "take Photo\n";}
 	void draw()	{ std::cout << "draw Photo\n"; }
 };
 //----------------------------------------
-class Emoticon 
+class Emoticon : public IDraw
 {
-	PhotoSticker* origin; 
+//	PhotoSticker* origin; 
+	IDraw* origin; 
 public:
-
-	Emoticon(PhotoSticker* ps) : origin(ps){}
+	Emoticon(IDraw* ps) : origin(ps){}
 	
 	void draw()	
 	{ 
@@ -23,11 +31,11 @@ public:
 		std::cout << "&&&&&&&&&&&&&&&&&&&&\n";  
 	}
 };
-class Frame 
+class Frame : public IDraw
 {
-	PhotoSticker* origin; 
+	IDraw* origin; 
 public:
-	Frame(PhotoSticker* ps) : origin(ps){}
+	Frame(IDraw* ps) : origin(ps){}
 	
 	void draw()	
 	{ 
@@ -43,11 +51,11 @@ int main()
 	ps.take();	
 	ps.draw();	
 
-	Emoticon e(&ps);
-	e.draw();	
+	Emoticon e(&ps); // ps 에 Emoticon 기능을 추가해서
+	e.draw();		 // 그리기
 
-	Frame f( &e );
-	f.draw();	 
+	Frame f( &e );	 // e 에 다시 Frame 기능을 추가해서
+	f.draw();	 	 // 그리기.
 
 
 }
