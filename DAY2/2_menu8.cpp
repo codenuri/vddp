@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <conio.h> 
+class unsupported_operation{};
 
 class BaseMenu
 {
@@ -15,9 +16,12 @@ public:
 	virtual void command() = 0; 
 
 	// 아래 함수들은 PopupMenu 만 사용하는 함수
-	
-	virtual void add(BaseMenu* m)      { throw unsupported_operator(); }
-	virtual BaseMenu* submenu(int idx) { throw unsupported_operator(); }
+	// => 기본 구현은 예외 발생
+	// => PopupMenu 에서만 재정의
+	// => PopupMenu 객체에 대해서 호출시 정상 동작
+	// => MenuItem  객체에 대해서 호출시 예외 발생
+	virtual void add(BaseMenu* m)      { throw unsupported_operation(); }
+	virtual BaseMenu* submenu(int idx) { throw unsupported_operation(); }
 };
 
 
