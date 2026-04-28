@@ -64,6 +64,8 @@ public:
 			v[cmd-1]->command();
 		}
 	}
+	// 하위 메뉴를 얻는 멤버 함수
+	BaseMenu* submenu(int idx) { return v[idx]; }
 };
 
 int main()
@@ -75,15 +77,16 @@ int main()
 	root->add(pm1);
 	root->add(pm2);
 	root->add( new MenuItem("POWEROFF", 31));
-	
+
 	pm1->add( new MenuItem("RED",   11));
 	pm1->add( new MenuItem("GREEN", 12));
 	pm2->add( new MenuItem("HD",   21));
 	pm2->add( new MenuItem("FHD",  22));
 
+
 	// 이번 단계의 핵심
 	auto m = root->submenu(0);
-
+	m->add( new MenuItem("BLACK", 13)); // ??? 의도 : 색상 팝업 메뉴에 새로운 메뉴 추가
 
 
 	root->command();
