@@ -11,8 +11,18 @@ public:
 	virtual ~BaseMenu() {}
 	std::string get_title() { return title;}
 
+	// 아래 함수는 PopupMenu 와 MenuItem 에 공통으로 필요
 	virtual void command() = 0; 
+
+	// 아래 함수들은 PopupMenu 만 사용하는 함수
+	
+	virtual void add(BaseMenu* m)      { throw unsupported_operator(); }
+	virtual BaseMenu* submenu(int idx) { throw unsupported_operator(); }
 };
+
+
+
+
 
 class MenuItem : public BaseMenu
 {
