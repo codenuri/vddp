@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 
 // meyer's 싱글톤 코드를 자동 생성하는 매크로
+/*
 #define MAKE_SINGLETON(classname) 						\
 private:												\
 	classname() {}										\
@@ -12,7 +13,8 @@ public:													\
 		static classname instance;						\
 		return instance;								\
 	}
-
+*/
+#include "helper.h"  // 이 헤더에 위 매크로 있습니다.
 
 class Cursor
 {
