@@ -31,14 +31,15 @@ struct ICommand
 	virtual ~ICommand() {}
 };
 
-
-class AddRectCommand : public ICommand 
+// 도형을 추가하는 명령은 "유사한 코드가 많이" 있습니다.
+// 이 경우 기반 클래스로 공통의 코드를 제공합니다.
+class AddCommand : public ICommand 
 {
 	std::vector<Shape*>& v;
 public:
-	AddRectCommand(std::vector<Shape*>& v) : v(v) {}
+	AddCommand(std::vector<Shape*>& v) : v(v) {}
 
-	void execute() override { v.push_back(new Rect); } 
+	void execute() override { v.push_back( create_shape() ); } 
 	bool can_undo() override { return true; }
 	void undo() override 
 	{
@@ -47,24 +48,30 @@ public:
 		v.pop_back();
 		delete s;
 	}
+
+	virtual Shape* create_shape() = 0;
 };
 
-class AddCircleCommand : public ICommand 
+class AddRectCommand : public AddCommand 
 {
-	std::vector<Shape*>& v;
 public:
-	AddCircleCommand(std::vector<Shape*>& v) : v(v) {}
+	AddRectCommand(std::vector<Shape*>& v) : AddCommand(v) {}
 
-	void execute() override { v.push_back(new Circle); } 
-	bool can_undo() override { return true; }
-	void undo() override 
-	{
-		if ( v.empty() ) return ;
-		Shape* s = v.back();
-		v.pop_back();
-		delete s;
-	}
+	Shape* create_shape() override { return new Rect;}
 };
+
+
+class AddCircleCommand : public AddCommand 
+{
+public:
+	AddCircleCommand(std::vector<Shape*>& v) : AddCommand(v) {}
+
+	Shape* create_shape() override { return new Circle;}
+};
+
+
+
+
 
 class DrawCommand : public ICommand 
 {
