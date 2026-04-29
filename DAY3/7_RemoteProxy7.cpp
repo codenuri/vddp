@@ -17,19 +17,23 @@ template<typename T> class sp
 public:
 	sp(T* p = nullptr)  : ptr(p)         { if (ptr) ptr->AddRef(); }
 	sp(const sp& other) : ptr(other.ptr) { if (ptr) ptr->AddRef(); }
-
 	~sp() { if (ptr) ptr->Release(); }	
+
+	// 스마트 포인터의 핵심
+	// => 진짜 포인터 처럼 -> 와 * 연산 자를 사용할수 있어야 한다
+	T* operator->() { return ptr; }
+	T& operator*()  { return *ptr; }
 };
 
 int main()
 {
-	sp<ICalc> calc1 = load_proxy();
+	sp<ICalc> calc1 = load_proxy(); // sp<ICalc> calc1( load_proxy() );
 //	calc1->AddRef();	
 
 	sp<ICalc> calc2 = calc1;
 	//calc2->AddRef();	
 
-//	int n1 = calc1->Add(10, 20);
+	int n1 = calc1->Add(10, 20);
 
 }
 
