@@ -21,8 +21,12 @@ public:
 	{
 		std::cout << "서버에 접속해서 "
 				  << url << " 에 대한 IP 정보를 얻어오는 중\n";
+
 		std::this_thread::sleep_for(std::chrono::seconds(3));
+		
 		ip = "100.100.100.100";		
+
+		return ip;
 	}
 };
 int main()
