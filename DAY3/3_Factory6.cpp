@@ -7,6 +7,7 @@ class Shape
 {
 public:
 	virtual void draw() = 0;
+	virtual Shape* clone() = 0;
 	virtual ~Shape() {}
 };
 
@@ -14,6 +15,9 @@ class Rect : public Shape
 {
 public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
+
+	Shape* clone() override { return new Rect(*this);}
+
 
 	static Shape* create() { return new Rect; }
 };
@@ -28,6 +32,8 @@ class Circle : public Shape
 public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
+	Shape* clone() override { return new Circle(*this);}
+
 	static Shape* create() { return new Circle; }
 };
 
@@ -36,24 +42,23 @@ class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
 
-	using F = Shape*(*)(); 
-
-	std::map<int, F> create_function_map; 
+	std::map<int, Shape*> prototype_map; 
 public:
-	void register_shape(int key, F f)
+	void register_shape(int key, Shape* prototype)
 	{
-		create_function_map[key] = f;
+		prototype_map[key] = prototype;
 	}
 
 	Shape* create(int type)
 	{
 		Shape* s = nullptr;
 
-		auto it = create_function_map.find(type);
+		auto it = prototype_map.find(type);
 
-		if ( it != create_function_map.end() )
+		if ( it != prototype_map.end() )
 		{	
-			s = it->second();
+			// it->second : 공장에 등록한 견본 객체 
+			s = it->second->clone();
 		}
 		return s;
 	}
@@ -73,6 +78,7 @@ int main()
 	Rect* blue_rect = new Rect;  // 파란색 크기 20
 	Circle* red_circ = new Circle;
 
+	// 아래 코드는 클래스가 아닌 자주 사용하는 객체(견본)을 등록하는 코드
 	factory.register_shape(1, red_rect);
 	factory.register_shape(2, blue_rect);
 	factory.register_shape(3, red_circ);
