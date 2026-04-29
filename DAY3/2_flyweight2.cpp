@@ -44,12 +44,15 @@ public:
 
 int main()
 {
-	Image* img1 = Image::create("www.naver.com/a.png");
+	Image* img1 = Image::create("www.naver.com/a.png"); // 이순간 새로운 Image 객체 생성
 	img1->draw();
 
-	Image* img2 = Image::create("www.naver.com/a.png");
+	Image* img2 = Image::create("www.naver.com/a.png"); // a.png 그림을 위한 객체는 이미 생성됨
+														// 반환된 객체는 위에서 만든 객체
 	img2->draw();
 
+	std::cout << img1 << std::endl;
+	std::cout << img2 << std::endl;
 }
 
 
