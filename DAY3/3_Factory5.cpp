@@ -82,6 +82,13 @@ public:
 	void draw() override { std::cout << "draw Triangle" << std::endl; }
 };
 
+class Line : public Shape
+{
+	REGISTER(4, Line)
+public:
+	void draw() override { std::cout << "draw Line" << std::endl; }
+};
+
 
 int main()
 {	
