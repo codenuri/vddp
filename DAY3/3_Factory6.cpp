@@ -63,8 +63,23 @@ int main()
 {	
 	ShapeFactory& factory = ShapeFactory::get_instance();
 
-	factory.register_shape(1, &Rect::create);
-	factory.register_shape(2, &Circle::create);
+	// 아래 코드는 공장에 "클래스" 를 등록하는 의미
+	// => 정확히는 객체를 만들기 위한 함수 포인터 등록
+//	factory.register_shape(1, &Rect::create);
+//	factory.register_shape(2, &Circle::create);
+
+	// 이번에는 공장에 "자주 사용되는 도형의 견본" 을 만들어서 등록해 봅시다.
+	Rect* red_rect = new Rect;   // 빨간색 크기 10
+	Rect* blue_rect = new Rect;  // 파란색 크기 20
+	Circle* red_circ = new Circle;
+
+	factory.register_shape(1, red_rect);
+	factory.register_shape(2, blue_rect);
+	factory.register_shape(3, red_circ);
+
+
+
+
 
 	std::vector<Shape*> v;
 
