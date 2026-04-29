@@ -117,7 +117,7 @@ int main()
 		}
 		else if (cmd == 9)
 		{
-			command = new AddDrawCommand(v); 
+			command = new DrawCommand(v); 
 			command->execute();				 			
 			undo_stack.push(command);	
 		}
