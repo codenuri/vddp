@@ -9,6 +9,7 @@
 
 #include "ICalc.h"
 
+/*
 ICalc* load_proxy()
 {
 	// #1. DLL 을 Load 
@@ -27,6 +28,7 @@ ICalc* load_proxy()
 	ICalc* calc = f();
 	return calc;
 }
+*/
 int main()
 {	
 	ICalc* calc = load_proxy(); 
