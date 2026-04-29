@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include "helper.h"
 
 class Image
 {
@@ -31,6 +32,9 @@ public:
 
 class ImageFactory
 {
+	// 공장을 한개만 만들수 있게 하려면 singleton 도입
+	MAKE_SINGLETON(ImageFactory);
+
 	std::map<std::string, Image*> image_map;
 public:
 	Image* create(const std::string& url)
@@ -58,7 +62,8 @@ public:
 int main()
 {
 	// #1. Image 객체를 만드는 공장을 먼저 만들고
-	ImageFactory factory;
+//	ImageFactory factory;
+	ImageFactory& factory = ImageFactory::get_instance();
 
 	// #2. 공장에서 Image 객체를 생성한다.
 	Image* img1 = factory.create("www.naver.com/a.png"); 
