@@ -73,6 +73,27 @@ public:
 	inline static AutoRegister ar{1, &Rect::create}; // {} 초기화 사용
 };
 
+// "inline static AutoRegister ar" 의 의미
+/*
+						// Rect::ar 의 생성자 호출 
+						// => 결국 Rect 라는 타입에 대해서 한번 호출
+Rect* r1 = new Rect;	// Rect 생성자 호출
+Rect* r2 = new Rect;	// Rect 생성자 호출
+Rect* r3 = new Rect;	// Rect 생성자 호출
+						// 즉, 생성자는 객체당 1번씩 호출
+
+// C# 에는 static 생성자 문법이 있습니다.
+class Car 
+{
+	public Car() {} // 일반 생성자
+	static Car() {} // static 생성자
+}
+
+Car c1 = new Car(); // static 생성자
+					// Car 일반 생성자
+Car c1 = new Car(); // Car 일반 생성자
+*/
+
 
 
 
@@ -88,6 +109,17 @@ public:
 
 	inline static AutoRegister ar{2, &Circle::create};
 };
+
+class Triangle : public Shape
+{
+public:
+	void draw() override { std::cout << "draw Triangle" << std::endl; }
+
+	static Shape* create() { return new Triangle; }
+
+	inline static AutoRegister ar{3, &Triangle::create};
+};
+
 
 // main 이 실행되기 전에 이미
 // 1. Rect::ar 의 생성자 호출됨
