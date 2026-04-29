@@ -21,6 +21,9 @@ public:
 };
 
 // 도형 객체를 만드는 공장
+// 새로운 도형이 추가되면 ShapeFactory 는 변경됩니다.
+// => 그런데, ShapeFactory 한곳만 수정하면 됩니다.
+// => 즉, ShapeFactory 의 도입으로 새로운 도형 추가시, 코드 수정을 최소화 할수 있습니다.
 class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
@@ -48,6 +51,8 @@ int main()
 		int cmd;
 		std::cin >> cmd;
 	
+		// 아래 코드는 새로운 도형이 추가되어도 변경되지 않습니다.
+		// => 그런데 ?? ShapeFactory 코드는 수정되지 않나요 ?
 		if ( cmd > 0 && cmd < 8 ) // 1 ~ 7 를 도형의 번호로 예약
 		{
 			Shape* s = factory.create(cmd);
