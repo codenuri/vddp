@@ -32,6 +32,9 @@ int main()
 
 	// 클라이언트 에서는 Proxy 사용시 인터페이스를 사용한 약한 결합으로 사용해야 합니다
 
+	ICalc* calc = new ? ; // 어떻게 해야 할까요 ??
+						  // => 다음 소스에서 해결
+
 	int n1 = calc->Add(10, 20);
 	int n2 = calc->Sub(10, 20);
 
