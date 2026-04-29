@@ -48,44 +48,45 @@ public:
 	}
 };
 
+// 도형 클래스를 만들때 반드시 필요한 규칙을 자동생성하는 매크로 제공
+#define REGISTER(key, classname)						\
+	static Shape* create() { return new classname; }			\
+	inline static AutoRegister ar{key, &classname::create}; 
+
+/*
+// inline static 이 안되는 환경은 아래처럼 매크로 추가로 만들면 됩니다.
+#define REGISTER_IMPL(key, classname)	\
+	AutoRegister classname::ar(key, &classname::create);
+*/
 
 class Rect : public Shape
 {
+	REGISTER(1, Rect)
 public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
-
-	static Shape* create() { return new Rect; }
-
-	inline static AutoRegister ar{1, &Rect::create}; 
 };
-
 
 
 
 class Circle : public Shape
 {
+	REGISTER(2, Circle)
 public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
-
-	static Shape* create() { return new Circle; }
-
-	inline static AutoRegister ar{2, &Circle::create};
 };
 
 class Triangle : public Shape
 {
+	REGISTER(3, Triangle)
 public:
 	void draw() override { std::cout << "draw Triangle" << std::endl; }
-
-	static Shape* create() { return new Triangle; }
-
-	inline static AutoRegister ar{3, &Triangle::create};
 };
 
 
 int main()
 {	
 	ShapeFactory& factory = ShapeFactory::get_instance();
+
 	std::vector<Shape*> v;
 
 	while (1)
