@@ -89,9 +89,14 @@ int main()
 	ShapeFactory& factory = ShapeFactory::get_instance();
 
 	// #2. 공장에 제품(도형)을 등록합니다.
+	// => 아래 코드는 공장에 "Rect", "Circle" 클래스를 등록하는 의미 입니다.
+	// => "클래스 자체를 등록(보관)" 할수 없으므로 생성함수를 등록하는 것!!
 	factory.register_shape(1, &Rect::create);
 	factory.register_shape(2, &Circle::create);
 
+	// 새로운 도형(Triangle) 이 추가되면
+	// => 위 코드에 한줄을 추가(등록)해야 합니다.
+	// => 자동으로 등록할수 없을까요 ?? => 다음 소스.. 
 
 
 	std::vector<Shape*> v;
