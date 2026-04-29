@@ -25,4 +25,6 @@ int main()
 
 
 	// #2. command 패턴을 사용하는 방법
+	BrightnessCommand cmd(m, 90);
+	cmd.Execute(); 	// 이순간 m.set_brightness(90) 실행
 }
