@@ -53,6 +53,9 @@ int main()
 
 	std::cout << img1 << std::endl;
 	std::cout << img2 << std::endl;
+
+	// 아이폰 개발에 사용하는 Cocoa Library 가 위처럼 되어 있습니다.
+	// Swift 언어	
 }
 
 
