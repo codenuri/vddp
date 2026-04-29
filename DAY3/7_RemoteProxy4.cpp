@@ -27,7 +27,6 @@ ICalc* load_proxy()
 	ICalc* calc = f();
 	return calc;
 }
-
 int main()
 {	
 	ICalc* calc = load_proxy(); 
