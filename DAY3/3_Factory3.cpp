@@ -84,7 +84,13 @@ public:
 
 int main()
 {	
+	// #1. 공장을 만들고
 	ShapeFactory& factory = ShapeFactory::get_instance();
+
+	// #2. 공장에 제품(도형)을 등록합니다.
+	factory.register_shape(1, &Rect::create);
+	factory.register_shape(2, &Circle::create);
+
 
 
 	std::vector<Shape*> v;
