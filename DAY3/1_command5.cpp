@@ -87,13 +87,33 @@ public:
 	void undo() override { system("cls");	}
 };
 //---------------------------
+// 여러개의 명령을 보관했다가 한번에 실행하는 Macro 명령을 만들어 봅시다.
 
+class MacroCommand 
+{
+	std::vector<ICommand*> v;
+public:
+	void add(ICommand* cmd) { v.push_back(cmd);}
 
-
-
+	void execute()
+	{
+		for (auto cmd : v )
+			cmd->execute();
+	}
+};
 int main()
 {
 	std::vector<Shape*> v;
+
+	MacroCommand* mc1 = new MacroCommand;
+	mc1->add( new AddRectCommand(v));
+	mc1->add( new AddCircleCommand(v));
+	mc1->add( new DrawCommand(v));
+
+	mc1->execute(); // 자신이 보관하는 모든 명령을 한번에 실행
+
+
+
 
 	std::stack<ICommand*> undo_stack; 
 
