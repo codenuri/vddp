@@ -88,8 +88,10 @@ public:
 };
 //---------------------------
 // 여러개의 명령을 보관했다가 한번에 실행하는 Macro 명령을 만들어 봅시다.
-
-class MacroCommand 
+// MacroCommand 는 일반 명령을 보관하지만 MacroCommand 자체도 보관해야 한다.
+// => MacroCommand 와 일반 명령은 공통의 기반 클래스(ICommand) 가 있어야 한다
+// => Composite 패턴
+class MacroCommand : public ICommand    //<== 핵심 Composite 패턴
 {
 	std::vector<ICommand*> v;
 public:
@@ -111,6 +113,13 @@ int main()
 	mc1->add( new DrawCommand(v));
 
 	mc1->execute(); // 자신이 보관하는 모든 명령을 한번에 실행
+
+
+	MacroCommand* mc2 = new MacroCommand;
+	mc2->add( new AddRectCommand(v));
+	mc2->add( mc1 ); // 매크로 명령에 다시 매크로 명령 포함
+
+	mc2->execute();
 
 
 
