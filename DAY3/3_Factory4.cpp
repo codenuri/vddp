@@ -52,9 +52,9 @@ public:
 
 // 아래 한줄을 생각해 보세요
 // => 전역변수의 생성자와 main 함수중 어느것이 먼저 실행될까요 ?
-AutoRegister ar(1, &Rect::create);
-
-
+// 1. 모든 전역변수의 생성자가 호출된후
+// 2. mai 함수 실행
+// AutoRegister ar(1, &Rect::create);
 
 
 class Rect : public Shape
@@ -63,6 +63,14 @@ public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
 
 	static Shape* create() { return new Rect; }
+
+	// static 멤버 데이타의 특징을 생각하세요
+	// => 1. 모든 객체가 공유
+	// => 2. 객체를 한개도 만들지 않아도 프로그램 시작시 메모리에 존재(일종의 전역변수)
+	//       => ar 의 생성자는 프로그램 시작시 호출
+	//inline static AutoRegister ar(1, &Rect::create); // 클래스 안에서 객체 생성시 () 사용하면
+													 // 함수선언와 헷갈려서 컴파일 에러
+	inline static AutoRegister ar{1, &Rect::create}; // {} 초기화 사용
 };
 
 
@@ -77,18 +85,20 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
 	static Shape* create() { return new Circle; }
+
+	inline static AutoRegister ar{2, &Circle::create};
 };
 
-
-
+// main 이 실행되기 전에 이미
+// 1. Rect::ar 의 생성자 호출됨
+// 2. Circle::ar 의 생성자 호출됨
+// => 즉, 각 도형은 공장에 등록된 상태로
+// => main 함수 실행
+// 의미 : 각 도형 클래스가 자신을 공장에 등록하는 코드를 스스로 가지고 있는것
 
 int main()
 {	
 	ShapeFactory& factory = ShapeFactory::get_instance();
-
-	factory.register_shape(1, &Rect::create);
-	factory.register_shape(2, &Circle::create);
-
 	std::vector<Shape*> v;
 
 	while (1)
