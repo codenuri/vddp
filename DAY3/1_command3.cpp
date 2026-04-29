@@ -1,0 +1,77 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+class Shape
+{
+public:
+	virtual void draw() = 0;
+	virtual ~Shape() {}
+};
+
+class Rect : public Shape
+{
+public:
+	void draw() override { std::cout << "draw rect" << std::endl; }
+};
+
+class Circle : public Shape
+{
+public:
+	void draw() override { std::cout << "draw circle" << std::endl; }
+};
+
+// 메뉴 선택시 해야하는 모든 작업들을 수행하는 명령 클래스를 설계
+
+struct ICommand
+{
+	virtual void execute() = 0;
+	virtual bool can_undo() { return false; }
+	virtual void undo() {}
+	virtual ~ICommand() {}
+};
+
+// 사각형을 추가하는 명령
+class AddRectCommand : public ICommand 
+{
+	std::vector<Shape*>& v;
+public:
+	AddRectCommand(std::vector<Shape*>& v) : v(v) {}
+
+	void execute() {  } 
+};
+
+
+
+
+
+
+
+
+int main()
+{
+	std::vector<Shape*> v;
+
+	while (1)
+	{
+		int cmd;
+		std::cin >> cmd;
+
+		if (cmd == 1) v.push_back(new Rect);
+		else if (cmd == 2) v.push_back(new Circle);
+		else if (cmd == 9)
+		{
+			for (auto s : v)
+			{
+				s->draw(); 
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
