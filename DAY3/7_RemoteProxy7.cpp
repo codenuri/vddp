@@ -34,8 +34,9 @@ int main()
 	//calc2->AddRef();	
 
 	int n1 = calc1->Add(10, 20);
-
 }
+
+
 
 
 

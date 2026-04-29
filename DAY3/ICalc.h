@@ -61,3 +61,16 @@ ICalc* load_proxy()
 	ICalc* calc = f();
 	return calc;
 }
+
+// 아래 스마트 포인터도 결국 "서버 개발자가 만들어서 제공하면 됩니다."
+template<typename T> class sp
+{
+	T* ptr;
+public:
+	sp(T* p = nullptr) : ptr(p) { if (ptr) ptr->AddRef(); }
+	sp(const sp& other) : ptr(other.ptr) { if (ptr) ptr->AddRef(); }
+	~sp() { if (ptr) ptr->Release(); }
+
+	T* operator->() { return ptr; }
+	T& operator*() { return *ptr; }
+};
