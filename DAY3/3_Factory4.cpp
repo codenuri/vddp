@@ -39,6 +39,23 @@ public:
 };
 
 
+// 공장에 도형을 자동으로 등록하는 클래스
+// => 생성자만 사용하기 위해 만든것
+class AutoRegister 
+{
+public:
+	AutoRegister(int key, Shape*(*f)() )
+	{
+		ShapeFactory::get_instance().register_shape(key, f);
+	}
+};
+
+// 아래 한줄을 생각해 보세요
+// => 전역변수의 생성자와 main 함수중 어느것이 먼저 실행될까요 ?
+AutoRegister ar(1, &Rect::create);
+
+
+
 
 class Rect : public Shape
 {
@@ -47,6 +64,11 @@ public:
 
 	static Shape* create() { return new Rect; }
 };
+
+
+
+
+
 
 
 class Circle : public Shape
